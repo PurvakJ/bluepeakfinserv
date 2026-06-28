@@ -1,8 +1,10 @@
 // src/pages/Insurance.js
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Insurance.css';
 
 function Insurance() {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('health');
 
   const insuranceTypes = [
@@ -106,6 +108,17 @@ function Insurance() {
     }
   ];
 
+  // Navigation handler
+  const handleNavigation = (path) => {
+    navigate(path);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // Phone call handler
+  const handleCall = () => {
+    window.location.href = 'tel:8198000803';
+  };
+
   return (
     <div className="insurance-page">
       {/* ===== HERO SECTION ===== */}
@@ -117,8 +130,8 @@ function Insurance() {
             <h1>Protect What <span className="highlight">Matters Most</span></h1>
             <p>Compare and choose from the best insurance plans from India's top providers. Get comprehensive coverage for health, life, car, and more.</p>
             <div className="hero-buttons">
-              <button className="btn-primary">Compare Plans</button>
-              <button className="btn-outline">Get a Quote</button>
+              <button className="btn-primary" onClick={() => handleNavigation('/services')}>Compare Plans</button>
+              <button className="btn-outline" onClick={handleCall}>Get a Quote</button>
             </div>
           </div>
         </div>
@@ -162,7 +175,7 @@ function Insurance() {
                       <span key={index} className="provider-tag">{provider}</span>
                     ))}
                   </div>
-                  <button className="btn-primary">Get Quote Now</button>
+                  <button className="btn-primary" onClick={handleCall}>Get Quote Now</button>
                 </div>
                 <div className="detail-image">
                   <div className="image-placeholder">
@@ -186,30 +199,30 @@ function Insurance() {
             <p>We partner with India's leading insurance companies to bring you the best coverage</p>
           </div>
           <div className="partners-grid">
-          <div className="partner-card">
-  <div className="partner-icon">🏦</div>
-  <h3>ICICI Lombard</h3>
-  <p>Health, car, and travel insurance with extensive network coverage</p>
-  <span className="partner-badge">✓ Trusted Partner</span>
-</div>
-<div className="partner-card">
-  <div className="partner-icon">🛡️</div>
-  <h3>Assure Asset</h3>
-  <p>Life insurance and investment solutions for long-term security</p>
-  <span className="partner-badge">✓ Trusted Partner</span>
-</div>
-<div className="partner-card">
-  <div className="partner-icon">📊</div>
-  <h3>Paisabazaar</h3>
-  <p>Comprehensive insurance comparison platform</p>
-  <span className="partner-badge">✓ Trusted Partner</span>
-</div>
-<div className="partner-card">
-  <div className="partner-icon">🏥</div>
-  <h3>Max Life Insurance</h3>
-  <p>Term life insurance, ULIPs, and retirement solutions with high claim settlement ratio</p>
-  <span className="partner-badge">✓ Trusted Partner</span>
-</div>
+            <div className="partner-card" onClick={() => window.open('https://www.icicilombard.com', '_blank')} style={{ cursor: 'pointer' }}>
+              <div className="partner-icon">🏦</div>
+              <h3>ICICI Lombard</h3>
+              <p>Health, car, and travel insurance with extensive network coverage</p>
+              <span className="partner-badge">✓ Trusted Partner</span>
+            </div>
+            <div className="partner-card" onClick={() => window.open('https://www.assureasset.com', '_blank')} style={{ cursor: 'pointer' }}>
+              <div className="partner-icon">🛡️</div>
+              <h3>Assure Asset</h3>
+              <p>Life insurance and investment solutions for long-term security</p>
+              <span className="partner-badge">✓ Trusted Partner</span>
+            </div>
+            <div className="partner-card" onClick={() => window.open('https://www.paisabazaar.com', '_blank')} style={{ cursor: 'pointer' }}>
+              <div className="partner-icon">📊</div>
+              <h3>Paisabazaar</h3>
+              <p>Comprehensive insurance comparison platform</p>
+              <span className="partner-badge">✓ Trusted Partner</span>
+            </div>
+            <div className="partner-card" onClick={() => window.open('https://www.maxlifeinsurance.com', '_blank')} style={{ cursor: 'pointer' }}>
+              <div className="partner-icon">🏥</div>
+              <h3>Max Life Insurance</h3>
+              <p>Term life insurance, ULIPs, and retirement solutions with high claim settlement ratio</p>
+              <span className="partner-badge">✓ Trusted Partner</span>
+            </div>
           </div>
         </div>
       </section>
@@ -241,19 +254,19 @@ function Insurance() {
             <h2>Get Insured in <span className="highlight">3 Simple Steps</span></h2>
           </div>
           <div className="steps-grid">
-            <div className="step-card">
+            <div className="step-card" onClick={() => handleNavigation('/services')} style={{ cursor: 'pointer' }}>
               <div className="step-number">1</div>
               <div className="step-icon">📋</div>
               <h3>Compare Plans</h3>
               <p>Browse and compare insurance plans from multiple providers side-by-side</p>
             </div>
-            <div className="step-card">
+            <div className="step-card" onClick={handleCall} style={{ cursor: 'pointer' }}>
               <div className="step-number">2</div>
               <div className="step-icon">📝</div>
               <h3>Choose & Apply</h3>
               <p>Select the best plan for your needs and complete the application online</p>
             </div>
-            <div className="step-card">
+            <div className="step-card" onClick={handleCall} style={{ cursor: 'pointer' }}>
               <div className="step-number">3</div>
               <div className="step-icon">✅</div>
               <h3>Get Covered</h3>
@@ -288,8 +301,8 @@ function Insurance() {
             <h2>Ready to Protect Your Future?</h2>
             <p>Get the best insurance coverage with BLUEPEAKFINSERV</p>
             <div className="cta-buttons">
-              <button className="btn-primary">Compare Plans</button>
-              <button className="btn-outline-light">Call for Assistance</button>
+              <button className="btn-primary" onClick={() => handleNavigation('/services')}>Compare Plans</button>
+              <button className="btn-outline-light" onClick={handleCall}>Call for Assistance</button>
             </div>
           </div>
         </div>

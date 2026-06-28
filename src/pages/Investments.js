@@ -1,8 +1,10 @@
 // src/pages/Investments.js
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Investments.css';
 
 function Investments() {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('demat');
 
   const investmentTypes = [
@@ -99,6 +101,17 @@ function Investments() {
     { value: '24/7', label: 'Support Available' }
   ];
 
+  // Navigation handler
+  const handleNavigation = (path) => {
+    navigate(path);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // Phone call handler
+  const handleCall = () => {
+    window.location.href = 'tel:8198000803';
+  };
+
   return (
     <div className="investments-page">
       {/* ===== HERO SECTION ===== */}
@@ -110,8 +123,8 @@ function Investments() {
             <h1>Start Your <span className="highlight">Investment Journey</span></h1>
             <p>Open your Demat account, invest in mutual funds, and track your SIPs with BLUEPEAKFINSERV. Start with as little as ₹500.</p>
             <div className="hero-buttons">
-              <button className="btn-primary">Open Demat Account</button>
-              <button className="btn-outline">Explore Mutual Funds</button>
+              <button className="btn-primary" onClick={() => handleNavigation('/services')}>Open Demat Account</button>
+              <button className="btn-outline" onClick={() => handleNavigation('/services')}>Explore Mutual Funds</button>
             </div>
           </div>
         </div>
@@ -170,10 +183,10 @@ function Investments() {
                     ))}
                   </div>
                   <div className="detail-buttons">
-                    <button className="btn-primary">
+                    <button className="btn-primary" onClick={handleCall}>
                       {type.id === 'demat' ? 'Open Account' : type.id === 'mutual' ? 'Invest Now' : 'View Reports'}
                     </button>
-                    <button className="btn-outline">Learn More</button>
+                    <button className="btn-outline" onClick={() => handleNavigation('/services')}>Learn More</button>
                   </div>
                 </div>
                 <div className="detail-image">
@@ -199,25 +212,25 @@ function Investments() {
             <p>Compare and choose from India's leading Demat and trading platforms</p>
           </div>
           <div className="partners-grid">
-            <div className="partner-card">
+            <div className="partner-card" onClick={() => window.open('https://zerodha.com', '_blank')} style={{ cursor: 'pointer' }}>
               <div className="partner-logo">📊</div>
               <h3>Zerodha</h3>
               <p>India's largest stock broker with zero brokerage on equity delivery</p>
               <span className="partner-badge">✓ Popular Choice</span>
             </div>
-            <div className="partner-card">
+            <div className="partner-card" onClick={() => window.open('https://angelone.in', '_blank')} style={{ cursor: 'pointer' }}>
               <div className="partner-logo">📈</div>
               <h3>Angel One</h3>
               <p>Full-service broker with advanced trading tools and research</p>
               <span className="partner-badge">✓ Trusted Partner</span>
             </div>
-            <div className="partner-card">
+            <div className="partner-card" onClick={() => window.open('https://upstox.com', '_blank')} style={{ cursor: 'pointer' }}>
               <div className="partner-logo">📉</div>
               <h3>Upstox</h3>
               <p>Low-cost brokerage platform with user-friendly interface</p>
               <span className="partner-badge">✓ Recommended</span>
             </div>
-            <div className="partner-card">
+            <div className="partner-card" onClick={() => window.open('https://motilaloswal.com', '_blank')} style={{ cursor: 'pointer' }}>
               <div className="partner-logo">🏦</div>
               <h3>Motilal Oswal</h3>
               <p>Premium wealth management and trading services</p>
@@ -254,19 +267,19 @@ function Investments() {
             <h2>Start Investing in <span className="highlight">3 Simple Steps</span></h2>
           </div>
           <div className="steps-grid">
-            <div className="step-card">
+            <div className="step-card" onClick={() => handleNavigation('/services')} style={{ cursor: 'pointer' }}>
               <div className="step-number">1</div>
               <div className="step-icon">📝</div>
               <h3>Choose Your Platform</h3>
               <p>Compare and select from top trading platforms like Zerodha, Angel One, Upstox, or Motilal Oswal</p>
             </div>
-            <div className="step-card">
+            <div className="step-card" onClick={handleCall} style={{ cursor: 'pointer' }}>
               <div className="step-number">2</div>
               <div className="step-icon">📋</div>
               <h3>Complete KYC</h3>
               <p>Complete your digital KYC in minutes with minimal documentation</p>
             </div>
-            <div className="step-card">
+            <div className="step-card" onClick={handleCall} style={{ cursor: 'pointer' }}>
               <div className="step-number">3</div>
               <div className="step-icon">💹</div>
               <h3>Start Investing</h3>
@@ -356,8 +369,8 @@ function Investments() {
             <h2>Ready to Start Investing?</h2>
             <p>Join 10,000+ investors who trust BLUEPEAKFINSERV for their investment journey</p>
             <div className="cta-buttons">
-              <button className="btn-primary">Open Demat Account</button>
-              <button className="btn-outline-light">Start SIP</button>
+              <button className="btn-primary" onClick={() => handleNavigation('/services')}>Open Demat Account</button>
+              <button className="btn-outline-light" onClick={handleCall}>Start SIP</button>
             </div>
           </div>
         </div>

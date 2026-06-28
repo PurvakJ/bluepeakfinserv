@@ -102,7 +102,6 @@ function Footer() {
             <ul>
               <li><Link to="/about">About Us</Link></li>
               <li><Link to="/partners">Our Partners</Link></li>
-              <li><Link to="/">Careers</Link></li>
             </ul>
           </div>
 
@@ -123,7 +122,6 @@ function Footer() {
               <li><Link to="/support">Contact Us</Link></li>
               <li><Link to="/support">FAQs</Link></li>
               <li><Link to="/grievance">Grievance Redressal</Link></li>
-              <li><Link to="/">Live Chat</Link></li>
             </ul>
           </div>
 
@@ -133,7 +131,6 @@ function Footer() {
               <li><Link to="/privacy">Privacy Policy</Link></li>
               <li><Link to="/terms">Terms & Conditions</Link></li>
               <li><Link to="/grievance">Grievance Policy</Link></li>
-              <li><Link to="/">Cookie Policy</Link></li>
             </ul>
           </div>
         </div>

@@ -127,10 +127,19 @@ function Offers() {
     ? offers 
     : offers.filter(offer => offer.category === activeCategory);
 
+
+  // Phone call handler
+  const handleCall = () => {
+    window.location.href = 'tel:8198000803';
+  };
+
   const handleClaimOffer = (offerId) => {
     if (!claimedOffers.includes(offerId)) {
       setClaimedOffers([...claimedOffers, offerId]);
-      alert('🎉 Offer claimed successfully! Check your email for details.');
+      // Show success message
+      alert('🎉 Offer claimed successfully! Our team will contact you shortly with details.');
+      // Also trigger phone call for immediate assistance
+      handleCall();
     } else {
       alert('You have already claimed this offer!');
     }
@@ -147,8 +156,10 @@ function Offers() {
             <h1>Save More with <span className="highlight">BLUEPEAKFINSERV</span></h1>
             <p>Discover exclusive deals on loans, insurance, investments, and credit cards. Limited time offers with maximum savings.</p>
             <div className="hero-buttons">
-              <button className="btn-primary">View All Offers</button>
-              <button className="btn-outline">Get Notified</button>
+              <button className="btn-primary" onClick={() => {
+                document.querySelector('.offers-section').scrollIntoView({ behavior: 'smooth' });
+              }}>View All Offers</button>
+              <button className="btn-outline" onClick={handleCall}>Get Notified</button>
             </div>
           </div>
         </div>
@@ -232,19 +243,21 @@ function Offers() {
             <h2>Claim Your Offer in <span className="highlight">3 Steps</span></h2>
           </div>
           <div className="steps-grid">
-            <div className="step-card">
+            <div className="step-card" onClick={() => {
+              document.querySelector('.offers-section').scrollIntoView({ behavior: 'smooth' });
+            }} style={{ cursor: 'pointer' }}>
               <div className="step-number">1</div>
               <div className="step-icon">🔍</div>
               <h3>Browse Offers</h3>
               <p>Explore our curated list of exclusive offers across all categories</p>
             </div>
-            <div className="step-card">
+            <div className="step-card" onClick={handleCall} style={{ cursor: 'pointer' }}>
               <div className="step-number">2</div>
               <div className="step-icon">📋</div>
               <h3>Choose & Apply</h3>
               <p>Select the offer that suits you best and click "Claim Offer"</p>
             </div>
-            <div className="step-card">
+            <div className="step-card" onClick={handleCall} style={{ cursor: 'pointer' }}>
               <div className="step-number">3</div>
               <div className="step-icon">✅</div>
               <h3>Get Benefits</h3>
@@ -262,25 +275,37 @@ function Offers() {
             <h2>Offers by <span className="highlight">Category</span></h2>
           </div>
           <div className="highlights-grid">
-            <div className="highlight-card">
+            <div className="highlight-card" onClick={() => {
+              setActiveCategory('loans');
+              document.querySelector('.offers-section').scrollIntoView({ behavior: 'smooth' });
+            }} style={{ cursor: 'pointer' }}>
               <span className="highlight-icon">💰</span>
               <h3>Loans</h3>
               <p>0% processing fee, lower interest rates, and moratorium periods</p>
               <span className="highlight-count">{offers.filter(o => o.category === 'loans').length} offers</span>
             </div>
-            <div className="highlight-card">
+            <div className="highlight-card" onClick={() => {
+              setActiveCategory('insurance');
+              document.querySelector('.offers-section').scrollIntoView({ behavior: 'smooth' });
+            }} style={{ cursor: 'pointer' }}>
               <span className="highlight-icon">🛡️</span>
               <h3>Insurance</h3>
               <p>Up to 20% discount on premiums and combo deals</p>
               <span className="highlight-count">{offers.filter(o => o.category === 'insurance').length} offers</span>
             </div>
-            <div className="highlight-card">
+            <div className="highlight-card" onClick={() => {
+              setActiveCategory('investments');
+              document.querySelector('.offers-section').scrollIntoView({ behavior: 'smooth' });
+            }} style={{ cursor: 'pointer' }}>
               <span className="highlight-icon">📈</span>
               <h3>Investments</h3>
               <p>Free Demat account, SIP bonuses, and investment rewards</p>
               <span className="highlight-count">{offers.filter(o => o.category === 'investments').length} offers</span>
             </div>
-            <div className="highlight-card">
+            <div className="highlight-card" onClick={() => {
+              setActiveCategory('cards');
+              document.querySelector('.offers-section').scrollIntoView({ behavior: 'smooth' });
+            }} style={{ cursor: 'pointer' }}>
               <span className="highlight-icon">💳</span>
               <h3>Cards</h3>
               <p>2x reward points, cashback, and corporate expense cards</p>
@@ -307,21 +332,6 @@ function Offers() {
         </div>
       </section>
 
-      {/* ===== NEWSLETTER ===== */}
-      <section className="newsletter-section">
-        <div className="container">
-          <div className="newsletter-content">
-            <span className="newsletter-icon">📧</span>
-            <h2>Never Miss an Offer</h2>
-            <p>Subscribe to get exclusive offers and deals delivered to your inbox</p>
-            <form className="newsletter-form" onSubmit={(e) => e.preventDefault()}>
-              <input type="email" placeholder="Enter your email" required />
-              <button type="submit" className="btn-primary">Subscribe</button>
-            </form>
-          </div>
-        </div>
-      </section>
-
       {/* ===== CTA SECTION ===== */}
       <section className="cta-section">
         <div className="container">
@@ -329,8 +339,10 @@ function Offers() {
             <h2>Ready to Start Saving?</h2>
             <p>Explore our offers and start your savings journey today</p>
             <div className="cta-buttons">
-              <button className="btn-primary">View All Offers</button>
-              <button className="btn-outline-light">Contact Us</button>
+              <button className="btn-primary" onClick={() => {
+                document.querySelector('.offers-section').scrollIntoView({ behavior: 'smooth' });
+              }}>View All Offers</button>
+              <button className="btn-outline-light" onClick={handleCall}>Contact Us</button>
             </div>
           </div>
         </div>

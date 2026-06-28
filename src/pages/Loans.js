@@ -5,6 +5,11 @@ import './Loans.css';
 function Loans() {
   const [activeTab, setActiveTab] = useState('all');
   const [, setSelectedLoan] = useState(null);
+  
+  // Calculator state
+  const [loanAmount, setLoanAmount] = useState(500000);
+  const [interestRate, setInterestRate] = useState(12);
+  const [tenure, setTenure] = useState(36);
 
   const loanTypes = [
     {
@@ -154,9 +159,66 @@ function Loans() {
     }
   ];
 
+  // Calculate EMI
+  const calculateEMI = () => {
+    const P = loanAmount;
+    const r = interestRate / 100 / 12;
+    const n = tenure;
+    
+    if (r === 0) return P / n;
+    
+    const emi = P * r * Math.pow(1 + r, n) / (Math.pow(1 + r, n) - 1);
+    return emi;
+  };
+
+  const calculateTotalInterest = () => {
+    const emi = calculateEMI();
+    const totalPayment = emi * tenure;
+    const totalInterest = totalPayment - loanAmount;
+    return totalInterest;
+  };
+
+  const calculateTotalPayment = () => {
+    const emi = calculateEMI();
+    return emi * tenure;
+  };
+
+  const calculateProcessingFee = () => {
+    // Calculate processing fee as 1% of loan amount (average)
+    return loanAmount * 0.01;
+  };
+
+  // Format currency in Indian format
+  const formatCurrency = (amount) => {
+    return '₹' + Math.round(amount).toLocaleString('en-IN');
+  };
+
+  const monthlyEMI = calculateEMI();
+  const totalInterest = calculateTotalInterest();
+  const totalPayment = calculateTotalPayment();
+  const processingFee = calculateProcessingFee();
+
   const filteredLoans = activeTab === 'all' 
     ? loanTypes 
     : loanTypes.filter(loan => loan.id === activeTab);
+
+  // Handle slider changes
+  const handleLoanAmountChange = (e) => {
+    setLoanAmount(Number(e.target.value));
+  };
+
+  const handleInterestRateChange = (e) => {
+    setInterestRate(Number(e.target.value));
+  };
+
+  const handleTenureChange = (e) => {
+    setTenure(Number(e.target.value));
+  };
+  
+  // Phone call handler
+  const handleCall = () => {
+    window.location.href = 'tel:8198000803';
+  };
 
   return (
     <div className="loans-page">
@@ -169,8 +231,10 @@ function Loans() {
             <h1>Fuel Your Dreams with <span className="highlight">Flexible Loans</span></h1>
             <p>Get quick approval loans starting from ₹50,000 with minimal documentation. Choose from business, startup, working capital, and personal loans.</p>
             <div className="hero-buttons">
-              <button className="btn-primary">Check Eligibility</button>
-              <button className="btn-outline">Calculate EMI</button>
+              <button className="btn-primary" onClick={handleCall}>Check Eligibility</button>
+              <button className="btn-outline" onClick={() => {
+                document.querySelector('.calculator-section').scrollIntoView({ behavior: 'smooth' });
+              }}>Calculate EMI</button>
             </div>
           </div>
         </div>
@@ -259,7 +323,10 @@ function Loans() {
                 </div>
                 <button 
                   className={`btn-apply ${loan.popular ? 'btn-primary' : 'btn-outline'}`}
-                  onClick={() => setSelectedLoan(loan.id)}
+                  onClick={() => {
+                    setSelectedLoan(loan.id);
+                    handleCall();
+                  }}
                 >
                   Apply Now →
                 </button>
@@ -280,50 +347,71 @@ function Loans() {
           <div className="calculator-wrapper">
             <div className="calculator-form">
               <div className="form-group">
-                <label>Loan Amount (₹)</label>
-                <input type="range" min="50000" max="5000000" step="50000" defaultValue="500000" />
+                <label>Loan Amount: <span className="value-display">{formatCurrency(loanAmount)}</span></label>
+                <input 
+                  type="range" 
+                  min="50000" 
+                  max="5000000" 
+                  step="50000" 
+                  value={loanAmount}
+                  onChange={handleLoanAmountChange}
+                />
                 <div className="range-values">
                   <span>₹50,000</span>
                   <span>₹50 Lakhs</span>
                 </div>
               </div>
               <div className="form-group">
-                <label>Interest Rate (% p.a.)</label>
-                <input type="range" min="10" max="20" step="0.5" defaultValue="12" />
+                <label>Interest Rate: <span className="value-display">{interestRate}% p.a.</span></label>
+                <input 
+                  type="range" 
+                  min="8" 
+                  max="20" 
+                  step="0.5" 
+                  value={interestRate}
+                  onChange={handleInterestRateChange}
+                />
                 <div className="range-values">
-                  <span>10%</span>
+                  <span>8%</span>
                   <span>20%</span>
                 </div>
               </div>
               <div className="form-group">
-                <label>Tenure (Months)</label>
-                <input type="range" min="12" max="60" step="6" defaultValue="36" />
+                <label>Tenure: <span className="value-display">{tenure} months</span></label>
+                <input 
+                  type="range" 
+                  min="12" 
+                  max="84" 
+                  step="6" 
+                  value={tenure}
+                  onChange={handleTenureChange}
+                />
                 <div className="range-values">
-                  <span>12</span>
-                  <span>60</span>
+                  <span>12 months</span>
+                  <span>84 months</span>
                 </div>
               </div>
             </div>
             <div className="calculator-result">
               <div className="result-amount">
                 <span className="result-label">Monthly EMI</span>
-                <span className="result-value">₹12,345</span>
+                <span className="result-value">{formatCurrency(monthlyEMI)}</span>
               </div>
               <div className="result-details">
                 <div className="result-item">
                   <span>Total Interest</span>
-                  <span>₹1,23,456</span>
+                  <span>{formatCurrency(totalInterest)}</span>
                 </div>
                 <div className="result-item">
                   <span>Total Payment</span>
-                  <span>₹6,23,456</span>
+                  <span>{formatCurrency(totalPayment)}</span>
                 </div>
                 <div className="result-item">
                   <span>Processing Fee</span>
-                  <span>₹5,000</span>
+                  <span>{formatCurrency(processingFee)}</span>
                 </div>
               </div>
-              <button className="btn-primary">Apply Now</button>
+              <button className="btn-primary" onClick={handleCall}>Apply Now</button>
             </div>
           </div>
         </div>
@@ -389,7 +477,7 @@ function Loans() {
             </div>
           </div>
           <div className="eligibility-cta">
-            <button className="btn-primary">Check Your Eligibility</button>
+            <button className="btn-primary" onClick={handleCall}>Check Your Eligibility</button>
           </div>
         </div>
       </section>
@@ -419,8 +507,8 @@ function Loans() {
             <h2>Ready to Get Your Loan?</h2>
             <p>Apply now and get approval within 24 hours</p>
             <div className="cta-buttons">
-              <button className="btn-primary">Apply Now</button>
-              <button className="btn-outline-light">Talk to Expert</button>
+              <button className="btn-primary" onClick={handleCall}>Apply Now</button>
+              <button className="btn-outline-light" onClick={handleCall}>Talk to Expert</button>
             </div>
           </div>
         </div>

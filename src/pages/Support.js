@@ -52,28 +52,74 @@ function Support() {
     {
       icon: '📞',
       title: 'Phone Support',
-      details: '+91 1800-XXX-XXXX',
-      sub: 'Available 9 AM - 9 PM, Mon-Sat'
+      details: '+91 8198000803',
+      sub: 'Available 9 AM - 9 PM, Mon-Sat',
+      action: 'call'
     },
     {
       icon: '✉️',
       title: 'Email Support',
       details: 'support@bluepeakfinserv.com',
-      sub: 'We respond within 24 hours'
+      sub: 'We respond within 24 hours',
+      action: 'email'
     },
     {
       icon: '💬',
       title: 'Live Chat',
       details: 'Chat with us',
-      sub: 'Available 24/7 on our app'
+      sub: 'Available 24/7 on our app',
+      action: 'chat'
     },
     {
       icon: '📍',
       title: 'Visit Us',
       details: 'BLUEPEAKFINSERV Office',
-      sub: 'By appointment only'
+      sub: 'By appointment only',
+      action: 'appointment'
     }
   ];
+
+  // Phone call handler
+  const handleCall = () => {
+    window.location.href = 'tel:8198000803';
+  };
+
+  // Email handler
+  const handleEmail = (email) => {
+    window.location.href = `mailto:${email}`;
+  };
+
+  // Chat handler
+  const handleChat = () => {
+    alert('💬 Live Chat is available on our mobile app. Please download the BLUEPEAKFINSERV app to start chatting with our support team.');
+    handleCall(); // Also offer phone support
+  };
+
+  // Appointment handler
+  const handleAppointment = () => {
+    alert('📅 Please call us to schedule an appointment at our office. Our team will be happy to assist you.');
+    handleCall();
+  };
+
+  // Channel button handler
+  const handleChannelAction = (channel) => {
+    switch(channel.action) {
+      case 'call':
+        handleCall();
+        break;
+      case 'email':
+        handleEmail('support@bluepeakfinserv.com');
+        break;
+      case 'chat':
+        handleChat();
+        break;
+      case 'appointment':
+        handleAppointment();
+        break;
+      default:
+        break;
+    }
+  };
 
   const handleChange = (e) => {
     setFormData({
@@ -84,7 +130,17 @@ function Support() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Support form submitted:', formData);
+    // Send email with form data
+    const subject = encodeURIComponent(`Support Request: ${formData.subject}`);
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\n` +
+      `Email: ${formData.email}\n` +
+      `Phone: ${formData.phone}\n` +
+      `Subject: ${formData.subject}\n\n` +
+      `Message:\n${formData.message}`
+    );
+    window.location.href = `mailto:support@bluepeakfinserv.com?subject=${subject}&body=${body}`;
+    
     setFormSubmitted(true);
     setTimeout(() => setFormSubmitted(false), 5000);
     setFormData({
@@ -111,8 +167,12 @@ function Support() {
             <h1>We're Here to <span className="highlight">Help You</span></h1>
             <p>Get 24/7 support for all your financial needs. Our team is ready to assist you with any questions or concerns.</p>
             <div className="hero-buttons">
-              <button className="btn-primary">Contact Support</button>
-              <button className="btn-outline">View FAQs</button>
+              <button className="btn-primary" onClick={() => {
+                document.querySelector('.channels-section').scrollIntoView({ behavior: 'smooth' });
+              }}>Contact Support</button>
+              <button className="btn-outline" onClick={() => {
+                document.querySelector('.faq-section').scrollIntoView({ behavior: 'smooth' });
+              }}>View FAQs</button>
             </div>
           </div>
         </div>
@@ -133,7 +193,10 @@ function Support() {
                 <h3>{channel.title}</h3>
                 <p className="channel-details">{channel.details}</p>
                 <p className="channel-sub">{channel.sub}</p>
-                <button className="btn-outline channel-btn">
+                <button 
+                  className="btn-outline channel-btn"
+                  onClick={() => handleChannelAction(channel)}
+                >
                   {channel.title === 'Live Chat' ? 'Start Chat' : 
                    channel.title === 'Visit Us' ? 'Book Appointment' : 
                    channel.title === 'Phone Support' ? 'Call Now' : 'Email Us'}
@@ -300,8 +363,7 @@ function Support() {
             <h2>Still Need Help?</h2>
             <p>Our support team is always ready to assist you with any questions</p>
             <div className="cta-buttons">
-              <button className="btn-primary">Start Live Chat</button>
-              <button className="btn-outline-light">Call Now</button>
+              <button className="btn-outline-light" onClick={handleCall}>Call Now</button>
             </div>
           </div>
         </div>

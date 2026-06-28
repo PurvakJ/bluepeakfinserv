@@ -1,34 +1,25 @@
 // src/pages/GrievanceRedressal.js
-import React, { useState } from 'react';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './GrievanceRedressal.css';
 
 function GrievanceRedressal() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    grievanceType: '',
-    subject: '',
-    description: '',
-    preferredResolution: '',
-    accountNumber: ''
-  });
+  const navigate = useNavigate();
 
-  const [formSubmitted, setFormSubmitted] = useState(false);
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+  // Navigation handler
+  const handleNavigation = (path) => {
+    navigate(path);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // In a real app, you would send this to your backend
-    console.log('Grievance submitted:', formData);
-    setFormSubmitted(true);
-    setTimeout(() => setFormSubmitted(false), 5000);
+  // Phone call handler
+  const handleCall = () => {
+    window.location.href = 'tel:8198000803';
+  };
+
+  // Email handler
+  const handleEmail = (email) => {
+    window.location.href = `mailto:${email}`;
   };
 
   return (
@@ -41,141 +32,6 @@ function GrievanceRedressal() {
             <span className="hero-tag">Grievance Redressal</span>
             <h1>Your Voice <span className="highlight">Matters</span></h1>
             <p>We're committed to addressing your concerns with transparency, fairness, and speed.</p>
-          </div>
-        </div>
-      </section>
-
-      {/* ===== GRIEVANCE FORM ===== */}
-      <section className="grievance-form-section">
-        <div className="container">
-          <div className="form-wrapper">
-            <div className="form-header">
-              <h2>File a Grievance</h2>
-              <p>Fill out the form below and our team will get back to you within 24 hours</p>
-            </div>
-            
-            {formSubmitted && (
-              <div className="success-message">
-                ✅ Your grievance has been submitted successfully! You will receive a confirmation email shortly with your reference number.
-              </div>
-            )}
-
-            <form onSubmit={handleSubmit} className="grievance-form">
-              <div className="form-row">
-                <div className="form-group">
-                  <label htmlFor="name">Full Name *</label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    placeholder="Enter your full name"
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="email">Email Address *</label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    placeholder="Enter your email"
-                  />
-                </div>
-              </div>
-
-              <div className="form-row">
-                <div className="form-group">
-                  <label htmlFor="phone">Phone Number *</label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    required
-                    placeholder="Enter your phone number"
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="accountNumber">Account/Reference Number</label>
-                  <input
-                    type="text"
-                    id="accountNumber"
-                    name="accountNumber"
-                    value={formData.accountNumber}
-                    onChange={handleChange}
-                    placeholder="If applicable"
-                  />
-                </div>
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="grievanceType">Type of Grievance *</label>
-                <select
-                  id="grievanceType"
-                  name="grievanceType"
-                  value={formData.grievanceType}
-                  onChange={handleChange}
-                  required
-                >
-                  <option value="">Select grievance type</option>
-                  <option value="service">Service-Related Issues</option>
-                  <option value="billing">Billing & Payment Disputes</option>
-                  <option value="technical">Technical Issues</option>
-                  <option value="partner">Partner Complaints</option>
-                  <option value="privacy">Data Privacy Concerns</option>
-                  <option value="compliance">Compliance Issues</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="subject">Subject *</label>
-                <input
-                  type="text"
-                  id="subject"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  required
-                  placeholder="Brief subject of your grievance"
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="description">Description *</label>
-                <textarea
-                  id="description"
-                  name="description"
-                  value={formData.description}
-                  onChange={handleChange}
-                  required
-                  rows="6"
-                  placeholder="Please provide a detailed description of your issue..."
-                ></textarea>
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="preferredResolution">Preferred Resolution</label>
-                <textarea
-                  id="preferredResolution"
-                  name="preferredResolution"
-                  value={formData.preferredResolution}
-                  onChange={handleChange}
-                  rows="3"
-                  placeholder="How would you like us to resolve this issue?"
-                ></textarea>
-              </div>
-
-              <button type="submit" className="btn-primary submit-btn">
-                Submit Grievance
-              </button>
-            </form>
           </div>
         </div>
       </section>
@@ -241,25 +97,49 @@ function GrievanceRedressal() {
               <div className="level-badge">Level 1</div>
               <h3>Customer Support</h3>
               <p>Initial point of contact. Resolution within 2-3 business days.</p>
-              <span className="contact-info">support@bluepeakfinserv.com</span>
+              <span 
+                className="contact-info" 
+                onClick={() => handleEmail('support@bluepeakfinserv.com')}
+                style={{ cursor: 'pointer', textDecoration: 'underline' }}
+              >
+                support@bluepeakfinserv.com
+              </span>
             </div>
             <div className="escalation-card level-2">
               <div className="level-badge">Level 2</div>
               <h3>Grievance Officer</h3>
               <p>If not satisfied with Level 1. Resolution within 7 business days.</p>
-              <span className="contact-info">grievance@bluepeakfinserv.com</span>
+              <span 
+                className="contact-info" 
+                onClick={() => handleEmail('grievance@bluepeakfinserv.com')}
+                style={{ cursor: 'pointer', textDecoration: 'underline' }}
+              >
+                grievance@bluepeakfinserv.com
+              </span>
             </div>
             <div className="escalation-card level-3">
               <div className="level-badge">Level 3</div>
               <h3>Senior Management</h3>
               <p>If not satisfied with Level 2. Resolution within 15 business days.</p>
-              <span className="contact-info">management@bluepeakfinserv.com</span>
+              <span 
+                className="contact-info" 
+                onClick={() => handleEmail('management@bluepeakfinserv.com')}
+                style={{ cursor: 'pointer', textDecoration: 'underline' }}
+              >
+                management@bluepeakfinserv.com
+              </span>
             </div>
             <div className="escalation-card level-4">
               <div className="level-badge">Level 4</div>
               <h3>Regulatory Authority</h3>
               <p>If not satisfied with internal resolution. Approach RBI/SEBI Ombudsman.</p>
-              <span className="contact-info">Visit RBI/SEBI Portal</span>
+              <span 
+                className="contact-info" 
+                onClick={() => handleNavigation('/support')}
+                style={{ cursor: 'pointer', textDecoration: 'underline' }}
+              >
+                Visit Support Center
+              </span>
             </div>
           </div>
         </div>
@@ -321,48 +201,37 @@ function GrievanceRedressal() {
               <div className="ombudsman-icon">🏦</div>
               <h3>RBI Ombudsman</h3>
               <p className="ombudsman-desc">For complaints related to banking services, loans, and financial institutions.</p>
-              <div className="ombudsman-contact">
-                <p><strong>Website:</strong> cms.rbi.org.in</p>
-                <p><strong>Email:</strong> cpio@rbi.org.in</p>
-              </div>
+              <button 
+                className="btn-outline" 
+                onClick={() => window.open('https://rbi.org.in', '_blank')}
+                style={{ marginTop: '1rem' }}
+              >
+                Visit RBI Portal
+              </button>
             </div>
             <div className="ombudsman-card">
               <div className="ombudsman-icon">📈</div>
               <h3>SEBI Ombudsman</h3>
               <p className="ombudsman-desc">For complaints related to investments, Demat accounts, and mutual funds.</p>
-              <div className="ombudsman-contact">
-                <p><strong>Website:</strong> sebi.gov.in</p>
-                <p><strong>Email:</strong> complaints@sebi.gov.in</p>
-              </div>
+              <button 
+                className="btn-outline" 
+                onClick={() => window.open('https://sebi.gov.in', '_blank')}
+                style={{ marginTop: '1rem' }}
+              >
+                Visit SEBI Portal
+              </button>
             </div>
             <div className="ombudsman-card">
               <div className="ombudsman-icon">🛡️</div>
               <h3>IRDAI Ombudsman</h3>
               <p className="ombudsman-desc">For complaints related to insurance policies and claims.</p>
-              <div className="ombudsman-contact">
-                <p><strong>Website:</strong> irdai.gov.in</p>
-                <p><strong>Email:</strong> complaints@irdai.gov.in</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ===== OFFICER SECTION ===== */}
-      <section className="officer-section">
-        <div className="container">
-          <div className="officer-card">
-            <div className="officer-icon">👤</div>
-            <div className="officer-details">
-              <span className="section-tag">Grievance Officer</span>
-              <h2>Meet Your <span className="highlight">Grievance Officer</span></h2>
-              <div className="officer-info">
-                <p><strong>Name:</strong> Grievance Redressal Officer</p>
-                <p><strong>Email:</strong> grievance@bluepeakfinserv.com</p>
-                <p><strong>Phone:</strong> +91 1800-XXX-XXXX</p>
-                <p><strong>Working Hours:</strong> 9:00 AM - 6:00 PM (Mon-Fri)</p>
-                <p><strong>Address:</strong> BLUEPEAKFINSERV, [Your Business Address]</p>
-              </div>
+              <button 
+                className="btn-outline" 
+                onClick={() => window.open('https://irdai.gov.in', '_blank')}
+                style={{ marginTop: '1rem' }}
+              >
+                Visit IRDAI Portal
+              </button>
             </div>
           </div>
         </div>
@@ -375,8 +244,7 @@ function GrievanceRedressal() {
             <h2>Need Immediate Assistance?</h2>
             <p>Contact our customer support team for quick resolution of your concerns</p>
             <div className="cta-buttons">
-              <button className="btn-primary">Call Support</button>
-              <button className="btn-outline-light">Email Us</button>
+              <button className="btn-primary" onClick={handleCall}>Call Support</button>
             </div>
           </div>
         </div>

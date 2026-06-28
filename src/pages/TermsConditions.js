@@ -1,8 +1,10 @@
 // src/pages/TermsConditions.js
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './TermsConditions.css';
 
 function TermsConditions() {
+  const navigate = useNavigate();
   const [activeSection, setActiveSection] = useState(null);
   const [acceptedTerms, setAcceptedTerms] = useState(false);
 
@@ -25,9 +27,33 @@ function TermsConditions() {
     { id: 'contact', title: 'Contact Information' }
   ];
 
+  // Navigation handler
+  const handleNavigation = (path) => {
+    navigate(path);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // Phone call handler
+  const handleCall = () => {
+    window.location.href = 'tel:8198000803';
+  };
+
+  // Email handler
+  const handleEmail = (email) => {
+    window.location.href = `mailto:${email}`;
+  };
+
+  // PDF download handler
+  const handleDownloadPDF = () => {
+    alert('📄 Terms & Conditions PDF download will be available soon. Please check back later.');
+    // You can add actual PDF download logic here
+  };
+
   const handleAccept = () => {
     setAcceptedTerms(true);
     alert('Thank you for accepting the Terms & Conditions. You can now proceed with using our services.');
+    // Navigate to home or services after acceptance
+    handleNavigation('/services');
   };
 
   const scrollToSection = (sectionId) => {
@@ -52,7 +78,7 @@ function TermsConditions() {
               <button className="btn-primary" onClick={() => scrollToSection('acceptance')}>
                 Read Terms
               </button>
-              <button className="btn-outline">Download PDF</button>
+              <button className="btn-outline" onClick={handleDownloadPDF}>Download PDF</button>
             </div>
           </div>
         </div>
@@ -72,7 +98,7 @@ function TermsConditions() {
               </div>
               <div className="acceptance-buttons">
                 <button className="btn-primary" onClick={handleAccept}>Accept Terms</button>
-                <button className="btn-outline">Review Later</button>
+                <button className="btn-outline" onClick={() => scrollToSection('acceptance')}>Review Later</button>
               </div>
             </div>
           </div>
@@ -308,15 +334,15 @@ function TermsConditions() {
               </div>
               <p>Our services are delivered in partnership with:</p>
               <div className="partner-grid">
-                <div className="partner-type">
+                <div className="partner-type" onClick={() => handleNavigation('/partners')} style={{ cursor: 'pointer' }}>
                   <h4>📈 Demat & Trading</h4>
                   <p>Zerodha, Angel One, Upstox, Motilal Oswal</p>
                 </div>
-                <div className="partner-type">
+                <div className="partner-type" onClick={() => handleNavigation('/partners')} style={{ cursor: 'pointer' }}>
                   <h4>🛡️ Insurance</h4>
                   <p>ICICI Lombard, Assure Asset, Paisabazaar</p>
                 </div>
-                <div className="partner-type">
+                <div className="partner-type" onClick={() => handleNavigation('/partners')} style={{ cursor: 'pointer' }}>
                   <h4>🏦 Banking & Savings</h4>
                   <p>Kotak Mahindra Bank, Tide</p>
                 </div>
@@ -419,25 +445,25 @@ function TermsConditions() {
               </div>
               <p>For questions about these terms:</p>
               <div className="contact-grid">
-                <div className="contact-item">
+                <div className="contact-item" onClick={() => handleEmail('legal@bluepeakfinserv.com')} style={{ cursor: 'pointer' }}>
                   <span className="contact-icon">📧</span>
                   <div>
                     <h4>Email</h4>
-                    <p>legal@bluepeakfinserv.com</p>
+                    <p style={{ color: '#0066cc', textDecoration: 'underline' }}>legal@bluepeakfinserv.com</p>
                   </div>
                 </div>
-                <div className="contact-item">
+                <div className="contact-item" onClick={handleCall} style={{ cursor: 'pointer' }}>
                   <span className="contact-icon">📞</span>
                   <div>
                     <h4>Phone</h4>
-                    <p>+91 1800-XXX-XXXX</p>
+                    <p style={{ color: '#0066cc', textDecoration: 'underline' }}>+91 8198000803</p>
                   </div>
                 </div>
-                <div className="contact-item">
+                <div className="contact-item" onClick={() => handleNavigation('/grievance')} style={{ cursor: 'pointer' }}>
                   <span className="contact-icon">⚖️</span>
                   <div>
                     <h4>Compliance Officer</h4>
-                    <p>compliance@bluepeakfinserv.com</p>
+                    <p style={{ color: '#0066cc', textDecoration: 'underline' }}>File a Complaint</p>
                   </div>
                 </div>
               </div>

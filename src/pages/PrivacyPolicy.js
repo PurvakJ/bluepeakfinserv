@@ -1,8 +1,10 @@
 // src/pages/PrivacyPolicy.js
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './PrivacyPolicy.css';
 
 function PrivacyPolicy() {
+  const navigate = useNavigate();
   const [activeSection, setActiveSection] = useState(null);
   const [consentGiven, setConsentGiven] = useState(false);
 
@@ -21,6 +23,22 @@ function PrivacyPolicy() {
     { id: 'contact', title: 'Contact Us' }
   ];
 
+  // Navigation handler
+  const handleNavigation = (path) => {
+    navigate(path);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // Phone call handler
+  const handleCall = () => {
+    window.location.href = 'tel:8198000803';
+  };
+
+  // Email handler
+  const handleEmail = (email) => {
+    window.location.href = `mailto:${email}`;
+  };
+
   const handleConsent = () => {
     setConsentGiven(true);
     alert('Thank you for accepting our Privacy Policy. Your privacy preferences have been saved.');
@@ -32,6 +50,12 @@ function PrivacyPolicy() {
       element.scrollIntoView({ behavior: 'smooth' });
       setActiveSection(sectionId);
     }
+  };
+
+  // PDF download handler
+  const handleDownloadPDF = () => {
+    alert('📄 Privacy Policy PDF download will be available soon. Please check back later.');
+    // You can add actual PDF download logic here
   };
 
   return (
@@ -48,7 +72,7 @@ function PrivacyPolicy() {
               <button className="btn-primary" onClick={() => scrollToSection('introduction')}>
                 Read Policy
               </button>
-              <button className="btn-outline">Download PDF</button>
+              <button className="btn-outline" onClick={handleDownloadPDF}>Download PDF</button>
             </div>
           </div>
         </div>
@@ -330,7 +354,13 @@ function PrivacyPolicy() {
                 </div>
               </div>
               <p className="policy-note">
-                <strong>📧 To exercise these rights:</strong> privacy@bluepeakfinserv.com
+                <strong>📧 To exercise these rights:</strong> 
+                <span 
+                  onClick={() => handleEmail('privacy@bluepeakfinserv.com')}
+                  style={{ cursor: 'pointer', color: '#0066cc', textDecoration: 'underline', marginLeft: '0.3rem' }}
+                >
+                  privacy@bluepeakfinserv.com
+                </span>
               </p>
             </div>
 
@@ -382,32 +412,32 @@ function PrivacyPolicy() {
               </div>
               <p>If you have questions about this Privacy Policy, please contact us:</p>
               <div className="contact-grid">
-                <div className="contact-item">
+                <div className="contact-item" onClick={() => handleEmail('privacy@bluepeakfinserv.com')} style={{ cursor: 'pointer' }}>
                   <span className="contact-icon">📧</span>
                   <div>
                     <h4>Email</h4>
-                    <p>privacy@bluepeakfinserv.com</p>
+                    <p style={{ color: '#0066cc', textDecoration: 'underline' }}>privacy@bluepeakfinserv.com</p>
                   </div>
                 </div>
-                <div className="contact-item">
+                <div className="contact-item" onClick={handleCall} style={{ cursor: 'pointer' }}>
                   <span className="contact-icon">📞</span>
                   <div>
                     <h4>Phone</h4>
-                    <p>+91 1800-XXX-XXXX</p>
+                    <p style={{ color: '#0066cc', textDecoration: 'underline' }}>+91 8198000803</p>
                   </div>
                 </div>
-                <div className="contact-item">
-                  <span className="contact-icon">📍</span>
-                  <div>
-                    <h4>Address</h4>
-                    <p>BLUEPEAKFINSERV, [Your Business Address]</p>
-                  </div>
-                </div>
-                <div className="contact-item">
+                <div className="contact-item" onClick={() => handleNavigation('/grievance')} style={{ cursor: 'pointer' }}>
                   <span className="contact-icon">👤</span>
                   <div>
                     <h4>Grievance Officer</h4>
-                    <p>grievance@bluepeakfinserv.com</p>
+                    <p style={{ color: '#0066cc', textDecoration: 'underline' }}>File a Grievance</p>
+                  </div>
+                </div>
+                <div className="contact-item" onClick={() => handleNavigation('/support')} style={{ cursor: 'pointer' }}>
+                  <span className="contact-icon">🛡️</span>
+                  <div>
+                    <h4>Support</h4>
+                    <p style={{ color: '#0066cc', textDecoration: 'underline' }}>Visit Support Center</p>
                   </div>
                 </div>
               </div>

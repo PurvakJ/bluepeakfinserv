@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Home.css';
 
 const Home = () => {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState(0);
   const [activeFaq, setActiveFaq] = useState(null);
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
@@ -57,12 +59,12 @@ const Home = () => {
   ];
 
   const servicesData = [
-    { title: "Loans" },
-    { title: "Demat & Trading" },
-    { title: "Insurance" },
-    { title: "Credit Cards" },
-    { title: "Mutual Funds" },
-    { title: "SIP Report" }
+    { title: "Loans", path: "/loans" },
+    { title: "Demat & Trading", path: "/investments" },
+    { title: "Insurance", path: "/insurance" },
+    { title: "Credit Cards", path: "/services" },
+    { title: "Mutual Funds", path: "/investments" },
+    { title: "SIP Report", path: "/services" }
   ];
 
   const insights = [
@@ -130,6 +132,16 @@ const Home = () => {
     }
   ];
 
+  // Navigation handlers
+  const handleNavigation = (path) => {
+    navigate(path);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleCall = () => {
+    window.location.href = 'tel:8198000803';
+  };
+
   useEffect(() => {
     const interval1 = setInterval(() => {
       setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
@@ -156,8 +168,8 @@ const Home = () => {
       Your Trusted Partner for <span className="color-accent-4">Loans, Insurance &amp; Investments</span>
     </h1>
     <div className="hero-buttons">
-      <button className="btn-primary">Get Started Now</button>
-      <button className="btn-outline">Schedule a Call</button>
+      <button className="btn-primary" onClick={() => handleNavigation('/services')}>Get Started Now</button>
+      <button className="btn-outline" onClick={handleCall}>Schedule a Call</button>
     </div>
   </div>
 </section>
@@ -191,8 +203,8 @@ const Home = () => {
               BLUEPEAKFINSERV is your trusted financial partner, connecting you to India's top brands for loans, insurance, Demat accounts, and more.
             </p>
             <div className="about-buttons">
-              <button className="btn-primary">Learn More</button>
-              <button className="btn-outline">Our Philosophy</button>
+              <button className="btn-primary" onClick={() => handleNavigation('/about')}>Learn More</button>
+              <button className="btn-outline" onClick={() => handleNavigation('/about')}>Our Philosophy</button>
             </div>
           </div>
           <div className="about-tabs">
@@ -223,11 +235,11 @@ const Home = () => {
               Your One-Stop <span className="color-accent-2">Financial</span> Marketplace
             </h2>
           </div>
-          <button className="btn-link">Learn more →</button>
+          <button className="btn-link" onClick={() => handleNavigation('/services')}>Learn more →</button>
         </div>
         <div className="services-grid">
           {servicesData.map((service, index) => (
-            <div key={index} className="service-card">
+            <div key={index} className="service-card" onClick={() => handleNavigation(service.path)}>
               <div className="service-content">
                 <h4>{service.title}</h4>
                 <div className="service-icon">
@@ -294,7 +306,7 @@ const Home = () => {
             <span className="color-accent-4">You're Getting</span>
           </h2>
           <p className="why-us-description">We are Transparent Like that. No Gimmicks.</p>
-          <button className="btn-secondary">Schedule a Call</button>
+          <button className="btn-secondary" onClick={handleCall}>Schedule a Call</button>
         </div>
       </section>
 
@@ -317,7 +329,7 @@ const Home = () => {
             <span className="cta-tag">TRUSTED PARTNER</span>
             <h3>SEC Registered Investment Advisor</h3>
             <p>We help you achieve your vision and cultivate confidence and peace of mind across your financial journey.</p>
-            <button className="btn-primary">
+            <button className="btn-primary" onClick={handleCall}>
               <span className="cta-btn-badge">CPA</span>
               Free Consultation
             </button>
@@ -335,7 +347,7 @@ const Home = () => {
             </h2>
           </div>
           <div className="testimonials-actions">
-            <button className="btn-outline">Read All Testimonials</button>
+            <button className="btn-outline" onClick={() => handleNavigation('/support')}>Read All Testimonials</button>
             <div className="google-rating">
               <div className="rating-icon">
                 <svg width="20" height="20" viewBox="0 0 20 20">
@@ -395,11 +407,11 @@ const Home = () => {
               Financial <span className="color-accent-4">Insights</span><br />From Our Experts
             </h2>
           </div>
-          <button className="btn-outline">More Insights</button>
+          <button className="btn-outline" onClick={() => handleNavigation('/services')}>More Insights</button>
         </div>
         <div className="insights-grid">
           {insights.map((insight, index) => (
-            <div key={index} className="insight-card">
+            <div key={index} className="insight-card" onClick={() => handleNavigation('/services')}>
               <div className="insight-image" style={{ backgroundImage: `url(${insight.image})` }}></div>
               <div className="insight-content">
                 <span className="insight-category">{insight.category}</span>
@@ -420,7 +432,7 @@ const Home = () => {
             <div className="section-tag">Financial Planning FAQ's</div>
             <h2 className="section-title">Common questions on financial planning and investing</h2>
           </div>
-          <button className="btn-outline">Learn More</button>
+          <button className="btn-outline" onClick={() => handleNavigation('/support')}>Learn More</button>
         </div>
         <div className="faq-list">
           {faqs.map((faq, index) => (
@@ -438,13 +450,6 @@ const Home = () => {
               )}
             </div>
           ))}
-        </div>
-        <div className="faq-newsletter">
-          <span>Latest News & Resources</span>
-          <div className="newsletter-input">
-            <input type="email" placeholder="Email" />
-            <button>Subscribe</button>
-          </div>
         </div>
       </section>
 

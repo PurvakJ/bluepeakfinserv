@@ -17,28 +17,32 @@ function Partners() {
           logo: '📊', 
           description: 'India\'s largest stock broker with zero brokerage on delivery',
           features: ['Zero Brokerage', 'Advanced Trading Tools', 'Mobile App'],
-          rating: '4.5 ⭐'
+          rating: '4.5 ⭐',
+          website: 'https://zerodha.com'
         },
         { 
           name: 'Angel One', 
           logo: '📈', 
           description: 'Full-service broker with comprehensive research and advisory',
           features: ['Research Support', 'Low Cost', 'Expert Advisory'],
-          rating: '4.3 ⭐'
+          rating: '4.3 ⭐',
+          website: 'https://angelone.in'
         },
         { 
           name: 'Upstox', 
           logo: '📉', 
           description: 'User-friendly platform with competitive pricing',
           features: ['Low Brokerage', 'Easy Interface', 'Quick KYC'],
-          rating: '4.4 ⭐'
+          rating: '4.4 ⭐',
+          website: 'https://upstox.com'
         },
         { 
           name: 'Motilal Oswal', 
           logo: '🏦', 
           description: 'Premium wealth management and trading services',
           features: ['Premium Service', 'Wealth Management', 'Research Reports'],
-          rating: '4.2 ⭐'
+          rating: '4.2 ⭐',
+          website: 'https://motilaloswal.com'
         }
       ]
     },
@@ -53,21 +57,24 @@ function Partners() {
           logo: '🏥', 
           description: 'Leading health, car, and travel insurance provider',
           features: ['Cashless Claims', 'Network Hospitals', '24/7 Support'],
-          rating: '4.4 ⭐'
+          rating: '4.4 ⭐',
+          website: 'https://www.icicilombard.com'
         },
         { 
           name: 'Assure Asset', 
           logo: '🤝', 
           description: 'Trusted life insurance and investment solutions',
           features: ['Life Coverage', 'Investment Options', 'Tax Benefits'],
-          rating: '4.3 ⭐'
+          rating: '4.3 ⭐',
+          website: 'https://www.assureasset.com'
         },
         { 
           name: 'Paisabazaar', 
           logo: '💡', 
           description: 'Comprehensive insurance comparison platform',
           features: ['Easy Comparison', 'Best Rates', 'Quick Processing'],
-          rating: '4.2 ⭐'
+          rating: '4.2 ⭐',
+          website: 'https://www.paisabazaar.com'
         }
       ]
     },
@@ -82,14 +89,16 @@ function Partners() {
           logo: '🏛️', 
           description: 'Zero-balance savings account with premium banking features',
           features: ['Zero Balance', 'Premium Features', 'Mobile Banking'],
-          rating: '4.5 ⭐'
+          rating: '4.5 ⭐',
+          website: 'https://www.kotak.com'
         },
         { 
           name: 'Tide', 
           logo: '🌊', 
           description: 'Business banking with smart features for growing businesses',
           features: ['Business Account', 'Expense Management', 'Quick Setup'],
-          rating: '4.3 ⭐'
+          rating: '4.3 ⭐',
+          website: 'https://www.tide.co'
         }
       ]
     },
@@ -104,7 +113,8 @@ function Partners() {
           logo: '🏢', 
           description: 'Access to 50+ lenders for competitive rates',
           features: ['Competitive Rates', 'Quick Approval', 'Flexible Tenure'],
-          rating: '4.4 ⭐'
+          rating: '4.4 ⭐',
+          website: '#'
         }
       ]
     }
@@ -130,6 +140,20 @@ function Partners() {
     }
   ];
 
+
+  // Phone call handler
+  const handleCall = () => {
+    window.location.href = 'tel:8198000803';
+  };
+
+  // Partner connect handler
+  const handlePartnerConnect = (partnerName, website) => {
+    // Show partner details and offer assistance
+    alert(`Connecting you to ${partnerName}... Our team will assist you shortly.`);
+    // Trigger phone call for immediate assistance
+    handleCall();
+  };
+
   return (
     <div className="partners-page">
       {/* ===== HERO SECTION ===== */}
@@ -141,8 +165,10 @@ function Partners() {
             <h1>Trusted <span className="highlight">Partners</span> Network</h1>
             <p>We collaborate with India's leading financial institutions to bring you the best products and services.</p>
             <div className="hero-buttons">
-              <button className="btn-primary">Explore Partners</button>
-              <button className="btn-outline">Become a Partner</button>
+              <button className="btn-primary" onClick={() => {
+                document.querySelector('.partners-section').scrollIntoView({ behavior: 'smooth' });
+              }}>Explore Partners</button>
+              <button className="btn-outline" onClick={handleCall}>Become a Partner</button>
             </div>
           </div>
         </div>
@@ -201,7 +227,27 @@ function Partners() {
                             <li key={idx}>✓ {feature}</li>
                           ))}
                         </ul>
-                        <button className="btn-partner">Connect Now →</button>
+                        <button 
+                          className="btn-partner" 
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handlePartnerConnect(partner.name, partner.website);
+                          }}
+                        >
+                          Connect Now →
+                        </button>
+                        {partner.website && partner.website !== '#' && (
+                          <button 
+                            className="btn-partner-website"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              window.open(partner.website, '_blank');
+                            }}
+                            style={{ marginTop: '0.5rem', background: 'transparent', border: '1px solid #ddd', padding: '0.4rem 1rem', borderRadius: '4px', cursor: 'pointer' }}
+                          >
+                            Visit Website →
+                          </button>
+                        )}
                       </div>
                     )}
                     <div className="partner-expand">
@@ -277,15 +323,15 @@ function Partners() {
             <h2>Trusted by <span className="highlight">Industry Leaders</span></h2>
           </div>
           <div className="logos-grid">
-            <div className="logo-item">📊 <span>Zerodha</span></div>
-            <div className="logo-item">📈 <span>Angel One</span></div>
-            <div className="logo-item">📉 <span>Upstox</span></div>
-            <div className="logo-item">🏦 <span>Motilal Oswal</span></div>
-            <div className="logo-item">🏥 <span>ICICI Lombard</span></div>
-            <div className="logo-item">🤝 <span>Assure Asset</span></div>
-            <div className="logo-item">💡 <span>Paisabazaar</span></div>
-            <div className="logo-item">🏛️ <span>Kotak</span></div>
-            <div className="logo-item">🌊 <span>Tide</span></div>
+            <div className="logo-item" onClick={() => window.open('https://zerodha.com', '_blank')} style={{ cursor: 'pointer' }}>📊 <span>Zerodha</span></div>
+            <div className="logo-item" onClick={() => window.open('https://angelone.in', '_blank')} style={{ cursor: 'pointer' }}>📈 <span>Angel One</span></div>
+            <div className="logo-item" onClick={() => window.open('https://upstox.com', '_blank')} style={{ cursor: 'pointer' }}>📉 <span>Upstox</span></div>
+            <div className="logo-item" onClick={() => window.open('https://motilaloswal.com', '_blank')} style={{ cursor: 'pointer' }}>🏦 <span>Motilal Oswal</span></div>
+            <div className="logo-item" onClick={() => window.open('https://www.icicilombard.com', '_blank')} style={{ cursor: 'pointer' }}>🏥 <span>ICICI Lombard</span></div>
+            <div className="logo-item" onClick={() => window.open('https://www.assureasset.com', '_blank')} style={{ cursor: 'pointer' }}>🤝 <span>Assure Asset</span></div>
+            <div className="logo-item" onClick={() => window.open('https://www.paisabazaar.com', '_blank')} style={{ cursor: 'pointer' }}>💡 <span>Paisabazaar</span></div>
+            <div className="logo-item" onClick={() => window.open('https://www.kotak.com', '_blank')} style={{ cursor: 'pointer' }}>🏛️ <span>Kotak</span></div>
+            <div className="logo-item" onClick={() => window.open('https://www.tide.co', '_blank')} style={{ cursor: 'pointer' }}>🌊 <span>Tide</span></div>
           </div>
         </div>
       </section>
@@ -297,8 +343,8 @@ function Partners() {
             <h2>Want to Become a Partner?</h2>
             <p>Join our network of 50+ trusted financial partners and grow together</p>
             <div className="cta-buttons">
-              <button className="btn-primary">Partner With Us</button>
-              <button className="btn-outline-light">Contact Us</button>
+              <button className="btn-primary" onClick={handleCall}>Partner With Us</button>
+              <button className="btn-outline-light" onClick={handleCall}>Contact Us</button>
             </div>
           </div>
         </div>

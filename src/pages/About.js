@@ -1,9 +1,10 @@
 // src/pages/About.js
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './About.css';
 
 function About() {
-
+  const navigate = useNavigate();
 
   const partnerCompanies = [
     {
@@ -28,6 +29,17 @@ function About() {
     }
   ];
 
+  // Navigation handler
+  const handleNavigation = (path) => {
+    navigate(path);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // Phone call handler
+  const handleCall = () => {
+    window.location.href = 'tel:8198000803';
+  };
+
   return (
     <div className="about-page">
       {/* ===== HERO SECTION ===== */}
@@ -39,8 +51,8 @@ function About() {
             <h1>Simplifying Finance, <br /><span className="highlight">Delivering Trust</span></h1>
             <p>Your trusted financial partner since 2026, connecting you to India's top financial brands for loans, insurance, Demat accounts, and more.</p>
             <div className="hero-buttons">
-              <button className="btn-primary">Get Started</button>
-              <button className="btn-outline">Contact Us</button>
+              <button className="btn-primary" onClick={() => handleNavigation('/services')}>Get Started</button>
+              <button className="btn-outline" onClick={handleCall}>Contact Us</button>
             </div>
           </div>
         </div>
@@ -163,7 +175,6 @@ function About() {
         </div>
       </section>
 
-
       {/* ===== CTA SECTION ===== */}
       <section className="cta-section">
         <div className="container">
@@ -171,8 +182,8 @@ function About() {
             <h2>Ready to Start Your Financial Journey?</h2>
             <p>Join 10,000+ satisfied clients who trust BLUEPEAKFINSERV for their financial needs</p>
             <div className="cta-buttons">
-              <button className="btn-primary">Get Started Now</button>
-              <button className="btn-outline-light">Schedule a Call</button>
+              <button className="btn-primary" onClick={() => handleNavigation('/services')}>Get Started Now</button>
+              <button className="btn-outline-light" onClick={handleCall}>Schedule a Call</button>
             </div>
           </div>
         </div>

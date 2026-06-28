@@ -1,9 +1,10 @@
 // src/pages/Services.js
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './Services.css';
 
 function Services() {
+  const navigate = useNavigate();
   const [activeCategory, setActiveCategory] = useState('all');
 
   const categories = [
@@ -148,6 +149,22 @@ function Services() {
     ? services 
     : services.filter(service => service.category === activeCategory);
 
+  // Navigation handler
+  const handleNavigation = (path) => {
+    navigate(path);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // Phone call handler
+  const handleCall = () => {
+    window.location.href = 'tel:8198000803';
+  };
+
+  // Service card click handler
+  const handleServiceClick = (link) => {
+    handleNavigation(link);
+  };
+
   return (
     <div className="services-page">
       {/* ===== HERO SECTION ===== */}
@@ -159,8 +176,10 @@ function Services() {
             <h1>Comprehensive <span className="highlight">Financial Solutions</span></h1>
             <p>From loans and insurance to investments and banking - we've got all your financial needs covered under one roof.</p>
             <div className="hero-buttons">
-              <button className="btn-primary">Explore Services</button>
-              <button className="btn-outline">Schedule a Call</button>
+              <button className="btn-primary" onClick={() => {
+                document.querySelector('.services-section').scrollIntoView({ behavior: 'smooth' });
+              }}>Explore Services</button>
+              <button className="btn-outline" onClick={handleCall}>Schedule a Call</button>
             </div>
           </div>
         </div>
@@ -203,7 +222,12 @@ function Services() {
 
           <div className="services-grid">
             {filteredServices.map((service) => (
-              <div key={service.id} className={`service-card ${service.popular ? 'featured' : ''}`}>
+              <div 
+                key={service.id} 
+                className={`service-card ${service.popular ? 'featured' : ''}`}
+                onClick={() => handleServiceClick(service.link)}
+                style={{ cursor: 'pointer' }}
+              >
                 {service.popular && (
                   <div className="service-badge">⭐ Popular</div>
                 )}
@@ -215,9 +239,12 @@ function Services() {
                     <span key={index} className="feature-tag">{feature}</span>
                   ))}
                 </div>
-                <Link to={service.link} className="service-link">
+                <div className="service-link" onClick={(e) => {
+                  e.stopPropagation();
+                  handleServiceClick(service.link);
+                }}>
                   Learn More →
-                </Link>
+                </div>
               </div>
             ))}
           </div>
@@ -240,22 +267,22 @@ function Services() {
             <h2>Service <span className="highlight">Highlights</span></h2>
           </div>
           <div className="highlights-grid">
-            <div className="highlight-card">
+            <div className="highlight-card" onClick={() => handleNavigation('/loans')} style={{ cursor: 'pointer' }}>
               <div className="highlight-icon">⚡</div>
               <h3>Quick Processing</h3>
               <p>Get approval within 24 hours for loans and other services</p>
             </div>
-            <div className="highlight-card">
+            <div className="highlight-card" onClick={() => handleNavigation('/partners')} style={{ cursor: 'pointer' }}>
               <div className="highlight-icon">🤝</div>
               <h3>Trusted Partners</h3>
               <p>Connected to India's top financial institutions</p>
             </div>
-            <div className="highlight-card">
+            <div className="highlight-card" onClick={handleCall} style={{ cursor: 'pointer' }}>
               <div className="highlight-icon">📱</div>
               <h3>Digital Experience</h3>
               <p>Complete digital journey from application to approval</p>
             </div>
-            <div className="highlight-card">
+            <div className="highlight-card" onClick={() => handleNavigation('/privacy')} style={{ cursor: 'pointer' }}>
               <div className="highlight-icon">🛡️</div>
               <h3>Secure & Safe</h3>
               <p>Bank-grade security for all your transactions</p>
@@ -272,19 +299,21 @@ function Services() {
             <h2>Get Started in <span className="highlight">3 Steps</span></h2>
           </div>
           <div className="steps-grid">
-            <div className="step-card">
+            <div className="step-card" onClick={() => {
+              document.querySelector('.services-section').scrollIntoView({ behavior: 'smooth' });
+            }} style={{ cursor: 'pointer' }}>
               <div className="step-number">1</div>
               <div className="step-icon">🔍</div>
               <h3>Explore Services</h3>
               <p>Browse our comprehensive range of financial services</p>
             </div>
-            <div className="step-card">
+            <div className="step-card" onClick={handleCall} style={{ cursor: 'pointer' }}>
               <div className="step-number">2</div>
               <div className="step-icon">📋</div>
               <h3>Choose & Apply</h3>
               <p>Select the service you need and complete the application</p>
             </div>
-            <div className="step-card">
+            <div className="step-card" onClick={handleCall} style={{ cursor: 'pointer' }}>
               <div className="step-number">3</div>
               <div className="step-icon">✅</div>
               <h3>Get Connected</h3>
@@ -317,8 +346,10 @@ function Services() {
             <h2>Ready to Get Started?</h2>
             <p>Explore our services and find the perfect solution for your needs</p>
             <div className="cta-buttons">
-              <button className="btn-primary">Explore All Services</button>
-              <button className="btn-outline-light">Contact Us</button>
+              <button className="btn-primary" onClick={() => {
+                document.querySelector('.services-section').scrollIntoView({ behavior: 'smooth' });
+              }}>Explore All Services</button>
+              <button className="btn-outline-light" onClick={handleCall}>Contact Us</button>
             </div>
           </div>
         </div>
