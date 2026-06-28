@@ -1,5 +1,6 @@
 // src/pages/Support.js
 import React, { useState } from 'react';
+import emailjs from '@emailjs/browser';
 import './Support.css';
 
 function Support() {
@@ -12,6 +13,8 @@ function Support() {
     message: ''
   });
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState(null);
 
   const faqs = [
     {
@@ -92,7 +95,7 @@ function Support() {
   // Chat handler
   const handleChat = () => {
     alert('💬 Live Chat is available on our mobile app. Please download the BLUEPEAKFINSERV app to start chatting with our support team.');
-    handleCall(); // Also offer phone support
+    handleCall();
   };
 
   // Appointment handler
@@ -128,28 +131,62 @@ function Support() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Send email with form data
-    const subject = encodeURIComponent(`Support Request: ${formData.subject}`);
-    const body = encodeURIComponent(
-      `Name: ${formData.name}\n` +
-      `Email: ${formData.email}\n` +
-      `Phone: ${formData.phone}\n` +
-      `Subject: ${formData.subject}\n\n` +
-      `Message:\n${formData.message}`
-    );
-    window.location.href = `mailto:support@bluepeakfinserv.com?subject=${subject}&body=${body}`;
     
-    setFormSubmitted(true);
-    setTimeout(() => setFormSubmitted(false), 5000);
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      subject: '',
-      message: ''
-    });
+    // Validate form
+    if (!formData.name || !formData.email || !formData.subject || !formData.message) {
+      setSubmitError('Please fill in all required fields.');
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitError(null);
+
+    try {
+      // Prepare email template parameters
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        from_phone: formData.phone || 'Not provided',
+        subject: formData.subject,
+        message: formData.message,
+        to_email: 'admin@bluepeakfinserv.com', // Admin email
+        reply_to: formData.email
+      };
+
+      // Send email using EmailJS
+      // Replace these with your actual EmailJS credentials
+      const serviceId = 'service_a0kojyd'; // Your EmailJS service ID
+      const templateId = 'template_m8szb0v'; // Your EmailJS template ID
+      const publicKey = '8IfMH-tJ6Z8Kp9kE5'; // Your EmailJS public key
+
+      const response = await emailjs.send(
+        serviceId,
+        templateId,
+        templateParams,
+        publicKey
+      );
+
+      console.log('Email sent successfully:', response);
+      
+      // Show success message
+      setFormSubmitted(true);
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        subject: '',
+        message: ''
+      });
+      
+      setTimeout(() => setFormSubmitted(false), 5000);
+    } catch (error) {
+      console.error('Failed to send email:', error);
+      setSubmitError('Failed to send message. Please try again later or contact us directly via phone.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const toggleFaq = (index) => {
@@ -223,6 +260,12 @@ function Support() {
               </div>
             )}
 
+            {submitError && (
+              <div className="error-message">
+                ❌ {submitError}
+              </div>
+            )}
+
             <form onSubmit={handleSubmit} className="contact-form">
               <div className="form-row">
                 <div className="form-group">
@@ -235,6 +278,7 @@ function Support() {
                     onChange={handleChange}
                     required
                     placeholder="Enter your full name"
+                    disabled={isSubmitting}
                   />
                 </div>
                 <div className="form-group">
@@ -247,6 +291,7 @@ function Support() {
                     onChange={handleChange}
                     required
                     placeholder="Enter your email"
+                    disabled={isSubmitting}
                   />
                 </div>
               </div>
@@ -261,6 +306,7 @@ function Support() {
                     value={formData.phone}
                     onChange={handleChange}
                     placeholder="Enter your phone number"
+                    disabled={isSubmitting}
                   />
                 </div>
                 <div className="form-group">
@@ -273,6 +319,7 @@ function Support() {
                     onChange={handleChange}
                     required
                     placeholder="What is this about?"
+                    disabled={isSubmitting}
                   />
                 </div>
               </div>
@@ -287,11 +334,22 @@ function Support() {
                   required
                   rows="6"
                   placeholder="Please describe your question or concern in detail..."
+                  disabled={isSubmitting}
                 ></textarea>
               </div>
 
-              <button type="submit" className="btn-primary submit-btn">
-                Send Message →
+              <button 
+                type="submit" 
+                className="btn-primary submit-btn"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? (
+                  <>
+                    <span className="spinner"></span> Sending...
+                  </>
+                ) : (
+                  'Send Message →'
+                )}
               </button>
             </form>
           </div>
