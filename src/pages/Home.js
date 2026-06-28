@@ -147,20 +147,20 @@ const Home = () => {
   return (
     <div className="home-container">
 
-      {/* ===== HERO SECTION ===== */}
-      <section className="hero-section">
-        <div className="hero-overlay"></div>
-        <div className="hero-content">
-          <span className="hero-tag">Premium Services</span>
-          <h1 className="hero-title">
-            Your Trusted Partner for <span className="color-accent-4">Loans, Insurance &amp; Investments</span>
-          </h1>
-          <div className="hero-buttons">
-            <button className="btn-primary">Get Started Now</button>
-            <button className="btn-outline">Schedule a Call</button>
-          </div>
-        </div>
-      </section>
+{/* ===== HERO SECTION ===== */}
+<section className="hero-section">
+  <div className="hero-overlay"></div>
+  <div className="hero-content">
+    <span className="hero-tag">Premium Services</span>
+    <h1 className="hero-title">
+      Your Trusted Partner for <span className="color-accent-4">Loans, Insurance &amp; Investments</span>
+    </h1>
+    <div className="hero-buttons">
+      <button className="btn-primary">Get Started Now</button>
+      <button className="btn-outline">Schedule a Call</button>
+    </div>
+  </div>
+</section>
 
       {/* ===== STATS SECTION ===== */}
       <section className="stats-section">
