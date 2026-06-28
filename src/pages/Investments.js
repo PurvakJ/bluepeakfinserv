@@ -101,6 +101,59 @@ function Investments() {
     { value: '24/7', label: 'Support Available' }
   ];
 
+  // Investment partners with logos
+  const investmentPartners = [
+    {
+      name: 'Zerodha',
+      logo: 'https://www.freelogovectors.net/wp-content/uploads/2021/12/zerodha-logo-freelogovectors.net_.png',
+      description: "India's largest stock broker with zero brokerage on equity delivery",
+      badge: '✓ Popular Choice',
+      website: 'https://zerodha.com'
+    },
+    {
+      name: 'Angel One',
+      logo: 'https://etimg.etb2bimg.com/photo/85027775.cms',
+      description: 'Full-service broker with advanced trading tools and research',
+      badge: '✓ Trusted Partner',
+      website: 'https://angelone.in'
+    },
+    {
+      name: 'Upstox',
+      logo: 'https://tradebrains.in/wp-content/uploads/2019/09/upstox-logo.png',
+      description: 'Low-cost brokerage platform with user-friendly interface',
+      badge: '✓ Recommended',
+      website: 'https://upstox.com'
+    },
+    {
+      name: 'Motilal Oswal',
+      logo: 'https://img-cdn.publive.online/fit-in/1200x675/filters:format(webp)/afaqs/media/media_files/2025/01/31/4zUR2dgxsYElMMyDR4UU.png',
+      description: 'Premium wealth management and trading services',
+      badge: '✓ Premium Service',
+      website: 'https://motilaloswal.com'
+    },
+    {
+      name: 'Paywith Ring',
+      logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2DcHs0RaJ-I3lNEB5_r6r7hgfwn4IrMPuOA&s',
+      description: 'Digital payment solutions and investment integration',
+      badge: '✓ Trusted Partner',
+      website: '#'
+    },
+    {
+      name: 'Fincova',
+      logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnVtIcNZGAfxdBzYZ0MqYL_IoCAZ3bcQxpbw&s',
+      description: 'Financial technology and investment platform',
+      badge: '✓ Trusted Partner',
+      website: '#'
+    },
+    {
+      name: 'Lemonn',
+      logo: 'https://etedge-insights.com/wp-content/uploads/2025/01/resizecom_Logo_Lemonn_PNG_White-BG-002-2.png',
+      description: 'Investment and wealth management solutions',
+      badge: '✓ Trusted Partner',
+      website: '#'
+    }
+  ];
+
   // Navigation handler
   const handleNavigation = (path) => {
     navigate(path);
@@ -212,30 +265,21 @@ function Investments() {
             <p>Compare and choose from India's leading Demat and trading platforms</p>
           </div>
           <div className="partners-grid">
-            <div className="partner-card" onClick={() => window.open('https://zerodha.com', '_blank')} style={{ cursor: 'pointer' }}>
-              <div className="partner-logo">📊</div>
-              <h3>Zerodha</h3>
-              <p>India's largest stock broker with zero brokerage on equity delivery</p>
-              <span className="partner-badge">✓ Popular Choice</span>
-            </div>
-            <div className="partner-card" onClick={() => window.open('https://angelone.in', '_blank')} style={{ cursor: 'pointer' }}>
-              <div className="partner-logo">📈</div>
-              <h3>Angel One</h3>
-              <p>Full-service broker with advanced trading tools and research</p>
-              <span className="partner-badge">✓ Trusted Partner</span>
-            </div>
-            <div className="partner-card" onClick={() => window.open('https://upstox.com', '_blank')} style={{ cursor: 'pointer' }}>
-              <div className="partner-logo">📉</div>
-              <h3>Upstox</h3>
-              <p>Low-cost brokerage platform with user-friendly interface</p>
-              <span className="partner-badge">✓ Recommended</span>
-            </div>
-            <div className="partner-card" onClick={() => window.open('https://motilaloswal.com', '_blank')} style={{ cursor: 'pointer' }}>
-              <div className="partner-logo">🏦</div>
-              <h3>Motilal Oswal</h3>
-              <p>Premium wealth management and trading services</p>
-              <span className="partner-badge">✓ Premium Service</span>
-            </div>
+            {investmentPartners.map((partner, index) => (
+              <div 
+                key={index} 
+                className="partner-card" 
+                onClick={() => partner.website !== '#' && window.open(partner.website, '_blank')} 
+                style={{ cursor: partner.website !== '#' ? 'pointer' : 'default' }}
+              >
+                <div className="partner-logo">
+                  <img src={partner.logo} alt={`${partner.name} logo`} />
+                </div>
+                <h3>{partner.name}</h3>
+                <p>{partner.description}</p>
+                <span className="partner-badge">{partner.badge}</span>
+              </div>
+            ))}
           </div>
         </div>
       </section>

@@ -12,33 +12,33 @@ function Partners() {
       title: 'Demat & Trading',
       description: 'Open your Demat account with India\'s leading trading platforms',
       partners: [
-        { 
-          name: 'Zerodha', 
-          logo: '📊', 
+        {
+          name: 'Zerodha',
+          logo: 'https://www.freelogovectors.net/wp-content/uploads/2021/12/zerodha-logo-freelogovectors.net_.png',
           description: 'India\'s largest stock broker with zero brokerage on delivery',
           features: ['Zero Brokerage', 'Advanced Trading Tools', 'Mobile App'],
           rating: '4.5 ⭐',
           website: 'https://zerodha.com'
         },
-        { 
-          name: 'Angel One', 
-          logo: '📈', 
+        {
+          name: 'Angel One',
+          logo: 'https://etimg.etb2bimg.com/photo/85027775.cms',
           description: 'Full-service broker with comprehensive research and advisory',
           features: ['Research Support', 'Low Cost', 'Expert Advisory'],
           rating: '4.3 ⭐',
           website: 'https://angelone.in'
         },
-        { 
-          name: 'Upstox', 
-          logo: '📉', 
+        {
+          name: 'Upstox',
+          logo: 'https://tradebrains.in/wp-content/uploads/2019/09/upstox-logo.png',
           description: 'User-friendly platform with competitive pricing',
           features: ['Low Brokerage', 'Easy Interface', 'Quick KYC'],
           rating: '4.4 ⭐',
           website: 'https://upstox.com'
         },
-        { 
-          name: 'Motilal Oswal', 
-          logo: '🏦', 
+        {
+          name: 'Motilal Oswal',
+          logo: 'https://img-cdn.publive.online/fit-in/1200x675/filters:format(webp)/afaqs/media/media_files/2025/01/31/4zUR2dgxsYElMMyDR4UU.png',
           description: 'Premium wealth management and trading services',
           features: ['Premium Service', 'Wealth Management', 'Research Reports'],
           rating: '4.2 ⭐',
@@ -52,25 +52,25 @@ function Partners() {
       title: 'Insurance',
       description: 'Comprehensive insurance coverage from trusted providers',
       partners: [
-        { 
-          name: 'ICICI Lombard', 
-          logo: '🏥', 
+        {
+          name: 'ICICI Lombard',
+          logo: 'https://www.freelogovectors.net/wp-content/uploads/2020/09/icici_lombard_logo.png',
           description: 'Leading health, car, and travel insurance provider',
           features: ['Cashless Claims', 'Network Hospitals', '24/7 Support'],
           rating: '4.4 ⭐',
           website: 'https://www.icicilombard.com'
         },
-        { 
-          name: 'Assure Asset', 
-          logo: '🤝', 
+        {
+          name: 'Assure Asset',
+          logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZgn39yxHPjicvtucvbjUtlaAYDgw-kbw_Vg&s',
           description: 'Trusted life insurance and investment solutions',
           features: ['Life Coverage', 'Investment Options', 'Tax Benefits'],
           rating: '4.3 ⭐',
           website: 'https://www.assureasset.com'
         },
-        { 
-          name: 'Paisabazaar', 
-          logo: '💡', 
+        {
+          name: 'Paisabazaar',
+          logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Paisabazaar-logo.svg/1280px-Paisabazaar-logo.svg.png',
           description: 'Comprehensive insurance comparison platform',
           features: ['Easy Comparison', 'Best Rates', 'Quick Processing'],
           rating: '4.2 ⭐',
@@ -84,17 +84,17 @@ function Partners() {
       title: 'Banking & Savings',
       description: 'Premium banking services for your business needs',
       partners: [
-        { 
-          name: 'Kotak Mahindra Bank', 
-          logo: '🏛️', 
+        {
+          name: 'Kotak Mahindra Bank',
+          logo: 'https://i.pinimg.com/736x/95/ee/14/95ee145596f56c0a699a1371a0c70151.jpg',
           description: 'Zero-balance savings account with premium banking features',
           features: ['Zero Balance', 'Premium Features', 'Mobile Banking'],
           rating: '4.5 ⭐',
           website: 'https://www.kotak.com'
         },
-        { 
-          name: 'Tide', 
-          logo: '🌊', 
+        {
+          name: 'Tide',
+          logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdEkJ84EnIyXzrQ7H3WrKDGrG5xu8ciVVLAg&s',
           description: 'Business banking with smart features for growing businesses',
           features: ['Business Account', 'Expense Management', 'Quick Setup'],
           rating: '4.3 ⭐',
@@ -108,9 +108,9 @@ function Partners() {
       title: 'Loan & Credit Partners',
       description: 'Access to multiple lenders for competitive loan rates',
       partners: [
-        { 
-          name: 'Multiple Lenders', 
-          logo: '🏢', 
+        {
+          name: 'Multiple Lenders',
+          logo: 'https://t4.ftcdn.net/jpg/01/83/77/65/360_F_183776586_ETr3Lg7pmP2bw0dF2vyNlBaf93eM5TaA.jpg',
           description: 'Access to 50+ lenders for competitive rates',
           features: ['Competitive Rates', 'Quick Approval', 'Flexible Tenure'],
           rating: '4.4 ⭐',
@@ -140,6 +140,54 @@ function Partners() {
     }
   ];
 
+  // All partner logos including new ones
+  const allPartnerLogos = [
+    {
+      name: 'Zerodha',
+      logo: 'https://www.freelogovectors.net/wp-content/uploads/2021/12/zerodha-logo-freelogovectors.net_.png',
+      website: 'https://zerodha.com'
+    },
+    {
+      name: 'Angel One',
+      logo: 'https://etimg.etb2bimg.com/photo/85027775.cms',
+      website: 'https://angelone.in'
+    },
+    {
+      name: 'Upstox',
+      logo: 'https://tradebrains.in/wp-content/uploads/2019/09/upstox-logo.png',
+      website: 'https://upstox.com'
+    },
+    {
+      name: 'ICICI Lombard',
+      logo: 'https://www.freelogovectors.net/wp-content/uploads/2020/09/icici_lombard_logo.png',
+      website: 'https://www.icicilombard.com'
+    },
+    {
+      name: 'Paisabazaar',
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Paisabazaar-logo.svg/1280px-Paisabazaar-logo.svg.png',
+      website: 'https://www.paisabazaar.com'
+    },
+    {
+      name: 'Kotak',
+      logo: 'https://i.pinimg.com/736x/95/ee/14/95ee145596f56c0a699a1371a0c70151.jpg',
+      website: 'https://www.kotak.com'
+    },
+    {
+      name: 'Tide',
+      logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdEkJ84EnIyXzrQ7H3WrKDGrG5xu8ciVVLAg&s',
+      website: 'https://www.tide.co'
+    },
+    {
+      name: 'Fincova',
+      logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnVtIcNZGAfxdBzYZ0MqYL_IoCAZ3bcQxpbw&s',
+      website: '#'
+    },
+    {
+      name: 'Lemonn',
+      logo: 'https://etedge-insights.com/wp-content/uploads/2025/01/resizecom_Logo_Lemonn_PNG_White-BG-002-2.png',
+      website: '#'
+    }
+  ];
 
   // Phone call handler
   const handleCall = () => {
@@ -148,9 +196,7 @@ function Partners() {
 
   // Partner connect handler
   const handlePartnerConnect = (partnerName, website) => {
-    // Show partner details and offer assistance
     alert(`Connecting you to ${partnerName}... Our team will assist you shortly.`);
-    // Trigger phone call for immediate assistance
     handleCall();
   };
 
@@ -208,14 +254,16 @@ function Partners() {
               </div>
               <div className="partner-grid">
                 {category.partners.map((partner, index) => (
-                  <div 
-                    key={index} 
+                  <div
+                    key={index}
                     className={`partner-card ${activePartner === `${category.id}-${index}` ? 'expanded' : ''}`}
                     onClick={() => setActivePartner(
                       activePartner === `${category.id}-${index}` ? null : `${category.id}-${index}`
                     )}
                   >
-                    <div className="partner-logo">{partner.logo}</div>
+                    <div className="partner-logo">
+                      <img src={partner.logo} alt={`${partner.name} logo`} />
+                    </div>
                     <h4>{partner.name}</h4>
                     <p className="partner-description">{partner.description}</p>
                     <div className="partner-rating">{partner.rating}</div>
@@ -227,8 +275,8 @@ function Partners() {
                             <li key={idx}>✓ {feature}</li>
                           ))}
                         </ul>
-                        <button 
-                          className="btn-partner" 
+                        <button
+                          className="btn-partner"
                           onClick={(e) => {
                             e.stopPropagation();
                             handlePartnerConnect(partner.name, partner.website);
@@ -237,13 +285,12 @@ function Partners() {
                           Connect Now →
                         </button>
                         {partner.website && partner.website !== '#' && (
-                          <button 
+                          <button
                             className="btn-partner-website"
                             onClick={(e) => {
                               e.stopPropagation();
                               window.open(partner.website, '_blank');
                             }}
-                            style={{ marginTop: '0.5rem', background: 'transparent', border: '1px solid #ddd', padding: '0.4rem 1rem', borderRadius: '4px', cursor: 'pointer' }}
                           >
                             Visit Website →
                           </button>
@@ -323,15 +370,17 @@ function Partners() {
             <h2>Trusted by <span className="highlight">Industry Leaders</span></h2>
           </div>
           <div className="logos-grid">
-            <div className="logo-item" onClick={() => window.open('https://zerodha.com', '_blank')} style={{ cursor: 'pointer' }}>📊 <span>Zerodha</span></div>
-            <div className="logo-item" onClick={() => window.open('https://angelone.in', '_blank')} style={{ cursor: 'pointer' }}>📈 <span>Angel One</span></div>
-            <div className="logo-item" onClick={() => window.open('https://upstox.com', '_blank')} style={{ cursor: 'pointer' }}>📉 <span>Upstox</span></div>
-            <div className="logo-item" onClick={() => window.open('https://motilaloswal.com', '_blank')} style={{ cursor: 'pointer' }}>🏦 <span>Motilal Oswal</span></div>
-            <div className="logo-item" onClick={() => window.open('https://www.icicilombard.com', '_blank')} style={{ cursor: 'pointer' }}>🏥 <span>ICICI Lombard</span></div>
-            <div className="logo-item" onClick={() => window.open('https://www.assureasset.com', '_blank')} style={{ cursor: 'pointer' }}>🤝 <span>Assure Asset</span></div>
-            <div className="logo-item" onClick={() => window.open('https://www.paisabazaar.com', '_blank')} style={{ cursor: 'pointer' }}>💡 <span>Paisabazaar</span></div>
-            <div className="logo-item" onClick={() => window.open('https://www.kotak.com', '_blank')} style={{ cursor: 'pointer' }}>🏛️ <span>Kotak</span></div>
-            <div className="logo-item" onClick={() => window.open('https://www.tide.co', '_blank')} style={{ cursor: 'pointer' }}>🌊 <span>Tide</span></div>
+            {allPartnerLogos.map((partner, index) => (
+              <div 
+                key={index} 
+                className="logo-item" 
+                onClick={() => partner.website !== '#' && window.open(partner.website, '_blank')} 
+                style={{ cursor: partner.website !== '#' ? 'pointer' : 'default' }}
+              >
+                <img src={partner.logo} alt={partner.name} />
+                <span>{partner.name}</span>
+              </div>
+            ))}
           </div>
         </div>
       </section>

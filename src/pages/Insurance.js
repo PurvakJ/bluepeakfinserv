@@ -108,6 +108,52 @@ function Insurance() {
     }
   ];
 
+  // Partner data with logos
+  const insurancePartners = [
+    {
+      name: 'ICICI Lombard',
+      logo: 'https://www.freelogovectors.net/wp-content/uploads/2020/09/icici_lombard_logo.png',
+      description: 'Health, car, and travel insurance with extensive network coverage',
+      website: 'https://www.icicilombard.com'
+    },
+    {
+      name: 'Assure Asset',
+      logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZgn39yxHPjicvtucvbjUtlaAYDgw-kbw_Vg&s',
+      description: 'Life insurance and investment solutions for long-term security',
+      website: 'https://www.assureasset.com'
+    },
+    {
+      name: 'Paisabazaar',
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Paisabazaar-logo.svg/1280px-Paisabazaar-logo.svg.png',
+      description: 'Comprehensive insurance comparison platform',
+      website: 'https://www.paisabazaar.com'
+    },
+    {
+      name: 'Max Life Insurance',
+      logo: 'https://etedge-insights.com/wp-content/uploads/2025/01/resizecom_Logo_Lemonn_PNG_White-BG-002-2.png',
+      description: 'Term life insurance, ULIPs, and retirement solutions with high claim settlement ratio',
+      website: 'https://www.maxlifeinsurance.com'
+    },
+    {
+      name: 'Paywith Ring',
+      logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2DcHs0RaJ-I3lNEB5_r6r7hgfwn4IrMPuOA&s',
+      description: 'Digital payment solutions and insurance integration',
+      website: '#'
+    },
+    {
+      name: 'Fincova',
+      logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnVtIcNZGAfxdBzYZ0MqYL_IoCAZ3bcQxpbw&s',
+      description: 'Financial technology and insurance platform',
+      website: '#'
+    },
+    {
+      name: 'Lemonn',
+      logo: 'https://etedge-insights.com/wp-content/uploads/2025/01/resizecom_Logo_Lemonn_PNG_White-BG-002-2.png',
+      description: 'Investment and insurance solutions',
+      website: '#'
+    }
+  ];
+
   // Navigation handler
   const handleNavigation = (path) => {
     navigate(path);
@@ -199,30 +245,21 @@ function Insurance() {
             <p>We partner with India's leading insurance companies to bring you the best coverage</p>
           </div>
           <div className="partners-grid">
-            <div className="partner-card" onClick={() => window.open('https://www.icicilombard.com', '_blank')} style={{ cursor: 'pointer' }}>
-              <div className="partner-icon">🏦</div>
-              <h3>ICICI Lombard</h3>
-              <p>Health, car, and travel insurance with extensive network coverage</p>
-              <span className="partner-badge">✓ Trusted Partner</span>
-            </div>
-            <div className="partner-card" onClick={() => window.open('https://www.assureasset.com', '_blank')} style={{ cursor: 'pointer' }}>
-              <div className="partner-icon">🛡️</div>
-              <h3>Assure Asset</h3>
-              <p>Life insurance and investment solutions for long-term security</p>
-              <span className="partner-badge">✓ Trusted Partner</span>
-            </div>
-            <div className="partner-card" onClick={() => window.open('https://www.paisabazaar.com', '_blank')} style={{ cursor: 'pointer' }}>
-              <div className="partner-icon">📊</div>
-              <h3>Paisabazaar</h3>
-              <p>Comprehensive insurance comparison platform</p>
-              <span className="partner-badge">✓ Trusted Partner</span>
-            </div>
-            <div className="partner-card" onClick={() => window.open('https://www.maxlifeinsurance.com', '_blank')} style={{ cursor: 'pointer' }}>
-              <div className="partner-icon">🏥</div>
-              <h3>Max Life Insurance</h3>
-              <p>Term life insurance, ULIPs, and retirement solutions with high claim settlement ratio</p>
-              <span className="partner-badge">✓ Trusted Partner</span>
-            </div>
+            {insurancePartners.map((partner, index) => (
+              <div 
+                key={index} 
+                className="partner-card" 
+                onClick={() => partner.website !== '#' && window.open(partner.website, '_blank')} 
+                style={{ cursor: partner.website !== '#' ? 'pointer' : 'default' }}
+              >
+                <div className="partner-logo">
+                  <img src={partner.logo} alt={`${partner.name} logo`} />
+                </div>
+                <h3>{partner.name}</h3>
+                <p>{partner.description}</p>
+                <span className="partner-badge">✓ Trusted Partner</span>
+              </div>
+            ))}
           </div>
         </div>
       </section>

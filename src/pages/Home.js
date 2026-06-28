@@ -104,13 +104,24 @@ const Home = () => {
     }
   ];
 
+  // Updated partner logos with all brand images including new ones
   const partnerLogos = [
-    "https://finovate.vamtam.com/wp-content/uploads/2025/03/hex.svg",
-    "https://finovate.vamtam.com/wp-content/uploads/2025/03/MTgox.svg",
-    "https://finovate.vamtam.com/wp-content/uploads/2025/03/savex.svg",
-    "https://finovate.vamtam.com/wp-content/uploads/2025/03/coinbase.svg",
-    "https://finovate.vamtam.com/wp-content/uploads/2025/03/konstruktion.svg",
-    "https://finovate.vamtam.com/wp-content/uploads/2025/03/meta.svg"
+    // Demat & Trading Partners
+    "https://www.freelogovectors.net/wp-content/uploads/2021/12/zerodha-logo-freelogovectors.net_.png",
+    "https://etimg.etb2bimg.com/photo/85027775.cms",
+    "https://tradebrains.in/wp-content/uploads/2019/09/upstox-logo.png",
+    "https://img-cdn.publive.online/fit-in/1200x675/filters:format(webp)/afaqs/media/media_files/2025/01/31/4zUR2dgxsYElMMyDR4UU.png",
+    // Insurance Partners
+    "https://www.freelogovectors.net/wp-content/uploads/2020/09/icici_lombard_logo.png",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZgn39yxHPjicvtucvbjUtlaAYDgw-kbw_Vg&s",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Paisabazaar-logo.svg/1280px-Paisabazaar-logo.svg.png",
+    // Banking Partners
+    "https://i.pinimg.com/736x/95/ee/14/95ee145596f56c0a699a1371a0c70151.jpg",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdEkJ84EnIyXzrQ7H3WrKDGrG5xu8ciVVLAg&s",
+    // New Partners
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2DcHs0RaJ-I3lNEB5_r6r7hgfwn4IrMPuOA&s",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnVtIcNZGAfxdBzYZ0MqYL_IoCAZ3bcQxpbw&s",
+    "https://etedge-insights.com/wp-content/uploads/2025/01/resizecom_Logo_Lemonn_PNG_White-BG-002-2.png"
   ];
 
   const partnerCompanies = [
