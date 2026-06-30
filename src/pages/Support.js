@@ -70,8 +70,8 @@ function Support() {
       icon: '💬',
       title: 'Live Chat',
       details: 'Chat with us',
-      sub: 'Available 24/7 on our app',
-      action: 'chat'
+      sub: 'Available 24/7 on WhatsApp',
+      action: 'whatsapp'
     },
     {
       icon: '📍',
@@ -92,10 +92,12 @@ function Support() {
     window.location.href = `mailto:${email}`;
   };
 
-  // Chat handler
-  const handleChat = () => {
-    alert('💬 Live Chat is available on our mobile app. Please download the BLUEPEAKFINSERV app to start chatting with our support team.');
-    handleCall();
+  // WhatsApp Chat handler
+  const handleWhatsApp = () => {
+    // Format: https://wa.me/91XXXXXXXXXX?text=YourMessage
+    const phoneNumber = '918198000803'; // Remove + and add country code
+    const message = encodeURIComponent('Hello! I need support with BLUEPEAKFINSERV services.');
+    window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
   };
 
   // Appointment handler
@@ -113,8 +115,8 @@ function Support() {
       case 'email':
         handleEmail('bluepeakfinserv@gmail.com');
         break;
-      case 'chat':
-        handleChat();
+      case 'whatsapp':
+        handleWhatsApp();
         break;
       case 'appointment':
         handleAppointment();
@@ -234,7 +236,7 @@ function Support() {
                   className="btn-outline channel-btn"
                   onClick={() => handleChannelAction(channel)}
                 >
-                  {channel.title === 'Live Chat' ? 'Start Chat' : 
+                  {channel.title === 'Live Chat' ? 'Chat on WhatsApp' : 
                    channel.title === 'Visit Us' ? 'Book Appointment' : 
                    channel.title === 'Phone Support' ? 'Call Now' : 'Email Us'}
                 </button>
