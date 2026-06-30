@@ -99,7 +99,7 @@ function GrievanceRedressal() {
               <p>Initial point of contact. Resolution within 2-3 business days.</p>
               <span 
                 className="contact-info" 
-                onClick={() => handleEmail('support@bluepeakfinserv.com')}
+                onClick={() => handleEmail('bluepeakfinserv@gmail.com')}
                 style={{ cursor: 'pointer', textDecoration: 'underline' }}
               >
                 support@bluepeakfinserv.com
@@ -111,7 +111,7 @@ function GrievanceRedressal() {
               <p>If not satisfied with Level 1. Resolution within 7 business days.</p>
               <span 
                 className="contact-info" 
-                onClick={() => handleEmail('grievance@bluepeakfinserv.com')}
+                onClick={() => handleEmail('bluepeakfinserv@gmail.com')}
                 style={{ cursor: 'pointer', textDecoration: 'underline' }}
               >
                 grievance@bluepeakfinserv.com
@@ -123,7 +123,7 @@ function GrievanceRedressal() {
               <p>If not satisfied with Level 2. Resolution within 15 business days.</p>
               <span 
                 className="contact-info" 
-                onClick={() => handleEmail('management@bluepeakfinserv.com')}
+                onClick={() => handleEmail('bluepeakfinserv@gmail.com')}
                 style={{ cursor: 'pointer', textDecoration: 'underline' }}
               >
                 management@bluepeakfinserv.com

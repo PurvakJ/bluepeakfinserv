@@ -62,7 +62,7 @@ function Support() {
     {
       icon: '✉️',
       title: 'Email Support',
-      details: 'support@bluepeakfinserv.com',
+      details: 'bluepeakfinserv@gmail.com',
       sub: 'We respond within 24 hours',
       action: 'email'
     },
@@ -111,7 +111,7 @@ function Support() {
         handleCall();
         break;
       case 'email':
-        handleEmail('support@bluepeakfinserv.com');
+        handleEmail('bluepeakfinserv@gmail.com');
         break;
       case 'chat':
         handleChat();
